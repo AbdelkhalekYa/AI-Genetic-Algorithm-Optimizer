@@ -33,12 +33,12 @@ class GeneticAlgorithmOptimizer:
 
         # Parameter Settings
         settings = [
-            ("Population Size:", "pop_size", "50"),
-            ("Generations:", "generations", "100"),
-            ("Dimension/Chromosome Size:", "chromosome_size", "5"),
-            ("Lower Bound:", "lower_bound", "-5.12"),
-            ("Upper Bound:", "upper_bound", "5.12"),
-            ("Mutation Rate:", "mutation_rate", "0.1")
+            ("Population Size:", "pop_size", "10"),
+            ("Generations:", "generations", "30"),
+            ("Dimension/Chromosome Size:", "chromosome_size", "6"),
+            ("Lower Bound:", "lower_bound", "-12"),
+            ("Upper Bound:", "upper_bound", "12"),
+            ("Mutation Rate:", "mutation_rate", "0.2")
         ]
 
         # Dynamic Entry Fields
@@ -73,39 +73,39 @@ class GeneticAlgorithmOptimizer:
         # Update bounds and initial values
         if function == "Sphere Function":
             self.entries['lower_bound'].delete(0, tk.END)
-            self.entries['lower_bound'].insert(0, "-5.12")
+            self.entries['lower_bound'].insert(0, "-8")
             self.entries['upper_bound'].delete(0, tk.END)
-            self.entries['upper_bound'].insert(0, "5.12")
+            self.entries['upper_bound'].insert(0, "8")
             self.entries['chromosome_size'].delete(0, tk.END)
-            self.entries['chromosome_size'].insert(0, "5")
+            self.entries['chromosome_size'].insert(0, "4")
         
         elif function == "Sum of Squares Function":
             self.entries['lower_bound'].delete(0, tk.END)
-            self.entries['lower_bound'].insert(0, "-10")
+            self.entries['lower_bound'].insert(0, "-8")
             self.entries['upper_bound'].delete(0, tk.END)
-            self.entries['upper_bound'].insert(0, "10")
+            self.entries['upper_bound'].insert(0, "8")
             self.entries['chromosome_size'].delete(0, tk.END)
-            self.entries['chromosome_size'].insert(0, "5")
+            self.entries['chromosome_size'].insert(0, "4")
         
         elif function in ["Booth Function", "Beale Function", "Matyas Function"]:
             self.entries['lower_bound'].delete(0, tk.END)
             self.entries['chromosome_size'].delete(0, tk.END)
-            self.entries['chromosome_size'].insert(0, "2")
+            self.entries['chromosome_size'].insert(0, "4")
             
             if function == "Booth Function":
-                self.entries['lower_bound'].insert(0, "-10")
+                self.entries['lower_bound'].insert(0, "-8")
                 self.entries['upper_bound'].delete(0, tk.END)
-                self.entries['upper_bound'].insert(0, "10")
+                self.entries['upper_bound'].insert(0, "8")
             
             elif function == "Beale Function":
-                self.entries['lower_bound'].insert(0, "-4.5")
+                self.entries['lower_bound'].insert(0, "-8")
                 self.entries['upper_bound'].delete(0, tk.END)
-                self.entries['upper_bound'].insert(0, "4.5")
+                self.entries['upper_bound'].insert(0, "8")
             
             elif function == "Matyas Function":
-                self.entries['lower_bound'].insert(0, "-10")
+                self.entries['lower_bound'].insert(0, "-8")
                 self.entries['upper_bound'].delete(0, tk.END)
-                self.entries['upper_bound'].insert(0, "10")
+                self.entries['upper_bound'].insert(0, "8")
 
     def objective_function(self, x):
         function = self.function_var.get()
