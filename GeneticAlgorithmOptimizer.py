@@ -68,7 +68,6 @@ class GeneticAlgorithmOptimizer:
         self.best_solution_label.pack(padx=5, pady=5)
 
     def update_parameter_bounds(self, event=None):
-        """Update default bounds based on selected function"""
         function = self.function_var.get()
         
         # Update bounds and initial values
@@ -109,7 +108,6 @@ class GeneticAlgorithmOptimizer:
                 self.entries['upper_bound'].insert(0, "10")
 
     def objective_function(self, x):
-        """Dispatch to appropriate objective function"""
         function = self.function_var.get()
         
         if function == "Sphere Function":
@@ -130,15 +128,12 @@ class GeneticAlgorithmOptimizer:
             return 0.26 * (x[0]**2 + x[1]**2) - 0.48 * x[0] * x[1]
 
     def initialize_population(self, pop_size, chromosome_size, lower_bound, upper_bound):
-        """Initialize random population"""
         return [[random.uniform(lower_bound, upper_bound) for _ in range(chromosome_size)] for _ in range(pop_size)]
 
     def evaluate_population(self, population):
-        """Evaluate fitness of population"""
         return [self.objective_function(individual) for individual in population]
 
     def select_parents(self, population, fitness):
-        """Select top 10% of population as parents"""
         num_parents = max(2, int(len(population) * 0.1))
         
         population_fitness = list(zip(population, fitness))
@@ -149,13 +144,11 @@ class GeneticAlgorithmOptimizer:
         return parents
 
     def crossover(self, parent1, parent2):
-        """Blend crossover"""
         alpha = random.random()
         child = [alpha * p1 + (1 - alpha) * p2 for p1, p2 in zip(parent1, parent2)]
         return child
 
     def mutate(self, individual, mutation_rate, lower_bound, upper_bound):
-        """Mutation with boundary handling"""
         for i in range(len(individual)):
             if random.random() < mutation_rate:
                 individual[i] += random.uniform(-1, 1)
